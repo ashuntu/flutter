@@ -57,7 +57,8 @@ elif [ -n "$(git -C "$FLUTTER_ROOT" ls-files bin/internal/engine.version)" ]; th
 # the current branch is forked from, which would be the last version of the
 # engine artifacts built from CI.
 else
-  ENGINE_VERSION=$("$FLUTTER_ROOT/bin/internal/content_aware_hash.sh")
+  # ENGINE_VERSION=$("$FLUTTER_ROOT/bin/internal/content_aware_hash.sh")
+  ENGINE_VERSION=$(git -C "$FLUTTER_ROOT" merge-base HEAD origin/master)
 fi
 
 # Write the engine version out so downstream tools know what to look for.
